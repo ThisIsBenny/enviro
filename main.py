@@ -87,6 +87,11 @@ cache_file_count = enviro.cached_upload_count()
 if cache_file_count >= config.upload_frequency:
   logging.info(f"> {cache_file_count} cache files need uploading")
 
-  enviro.upload_readings()
+  success = enviro.upload_readings()
+
+  # Send healthcheck ping only when configured and connected to wifi
+  # (upload_readings returns False in case that the connection to Wifi failed)
+  if config.healthcheck and success != False:
+    enviro.ping_healthcheck()
 
 enviro.sleep(config.reading_frequency)

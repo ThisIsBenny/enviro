@@ -37,3 +37,11 @@ mqtt_broker_password = None
 # adafruit ui settings
 adafruit_io_username = None
 adafruit_io_key = None
+
+# where to send healtcheck ping to ("http")
+healthcheck = None
+
+# http healthcheck settings
+healthcheck_http_url = ''
+healthcheck_http_username = ''
+healthcheck_http_password = ''

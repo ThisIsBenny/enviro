@@ -154,6 +154,10 @@ if destination == "mqtt":
 if destination == "adafruit_io":
   from enviro.destinations.adafruit_io import upload_readings
 
+healthcheck = helpers.get_config("healthcheck")
+if healthcheck == "http":
+  from enviro.healthcheck.http import ping_healthcheck
+
 def startup():
   # truncate log to keep it to at most three blocks on disk)
   logging.truncate(8192)
